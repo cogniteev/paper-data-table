@@ -17,6 +17,17 @@ export default Controller.extend({
 	limit: 5,
 	pages: A([1,2]),
 	page: 1,
+  totals: computed('desserts.[]', function() {
+    let desserts = this.get('desserts');
+    let sumBy = (desserts, prop) => Math.round(desserts.reduce((sum, row) => sum + row[prop], 0));
+    return [
+      sumBy(desserts, 'calories'),
+      sumBy(desserts, 'fat'),
+      sumBy(desserts, 'carbs'),
+      sumBy(desserts, 'protein'),
+      sumBy(desserts, 'sodium')
+    ];
+  }),
 	paginatedDesserts: computed('page','limit',function () {
 		let ind = (this.get('page') - 1) * this.get('limit');
 

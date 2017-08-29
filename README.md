@@ -61,6 +61,18 @@ Port of https://github.com/daniel-nagy/md-data-table using ember-paper
       {{/body.row}}
     {{/each}}
   {{/table.body}}
+  {{#table.foot as |foot|}}
+    {{#foot.row as |row|}}
+      {{#row.cell}}{{/row.cell}}
+      {{#row.cell}}{{/row.cell}}
+      {{#each totalDesserts as |total|}}
+        {{#row.cell numeric=true}}
+          {{total}}
+        {{/row.cell}}
+      {{/each}}
+      {{#row.cell}}{{/row.cell}}
+    {{/foot.row}}
+  {{/table.foot}}
 {{/paper-data-table}}
 {{paper-data-table-pagination
   limit=limit

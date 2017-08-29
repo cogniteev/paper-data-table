@@ -9,6 +9,7 @@ export default Component.extend({
 	bodyComponent: 'paper-data-table-body',
 	bodyRowComponent: 'paper-data-table-row',
 	headComponent: 'paper-data-table-head',
+  footComponent: 'paper-data-table-foot',
 	rowWidth: 0,
 	sortProp: '',
 	sortDir: 'asc',

@@ -55,6 +55,20 @@
 						{{/body.row}}
 					{{/each}}
 				{{/table.body}}
+        {{#table.foot as |foot|}}
+          {{#foot.row edit=false as |row|}}
+            {{#row.cell}}{{/row.cell}}
+            {{#row.cell}}{{/row.cell}}
+            {{#each totals as |total|}}
+              {{#row.cell numeric=true}}
+                {{total}}
+              {{/row.cell}}
+            {{/each}}
+            {{#row.cell}}{{/row.cell}}
+            {{#row.cell}}{{/row.cell}}
+            {{#row.cell}}{{/row.cell}}
+          {{/foot.row}}
+        {{/table.foot}}
 			{{/paper-data-table}}
 			{{paper-data-table-pagination
 				limit=limit

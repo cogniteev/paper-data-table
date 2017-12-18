@@ -1,6 +1,6 @@
 {
   "name": "paper-data-table",
-  "version": "0.1.4-cogniteev",
+  "version": "0.1.5-cogniteev",
   "description": "Material Data Table for ember-paper",
   "keywords": [
     "ember-addon",

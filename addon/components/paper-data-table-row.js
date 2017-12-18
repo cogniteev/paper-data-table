@@ -7,6 +7,7 @@ export default Component.extend({
 	layout,
 	tagName: 'tr',
 	classNames: ['md-row'],
+  classNameBindings: ['disabled:md-disabled'],
 	showEdit: false,
 	attributeBindings: ['style', 'disabled'],
 	style: computed('edit', 'onClick', function() {

@@ -108,6 +108,8 @@ table.md-table {
       width: 16px;
       font-size: 16px !important;
       line-height: 16px !important;
+      min-height: 16px !important;
+      min-width: 16px !important;
 
       &.md-sort-icon {
         color: rgba(0, 0, 0, 26%);
@@ -226,7 +228,7 @@ table.md-table {
     color: rgba(0, 0, 0, 0.87);
     font-size: 13px;
     border-top: 1px rgba(0, 0, 0, 0.12) solid;
-    
+
     &.md-numeric md-select {
       justify-content: flex-end;
 

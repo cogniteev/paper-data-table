@@ -13,5 +13,9 @@ export default Component.extend({
 		let endOffset = this.get('startOffset') + this.get('limit');
 		let total = this.get('total');
 		return total ? Math.min(endOffset, total) : endOffset;
-	})
+	}),
+  disableDecrement: computed.equal('page', 1),
+  disableIncrement: computed('page', 'pages.[]', function() {
+    return this.get('page') === this.get('pages.lastObject');
+  })
 });

@@ -2,7 +2,6 @@ import Component from '@ember/component';
 import { htmlSafe } from '@ember/template';
 import { computed } from '@ember/object';
 import { run } from '@ember/runloop';
-import $ from 'jquery';
 import Ember from 'ember';
 import layout from '../templates/components/paper-data-table-dialog-inner';
 
@@ -27,7 +26,7 @@ export default Component.extend({
 	positionDialog() {
 		let element = this.get('element') || { clientWidth: 0, clientHeight: 0};
 		let size = { width: element.clientWidth, height: element.clientHeight };
-		let cellBounds = $(`#${this.get('parent')}`)[0].getBoundingClientRect();
+		let cellBounds = document.querySelector(`#${this.get('parent')}`).getBoundingClientRect();
 		let tableBounds = this._mdTableContainer.getBoundingClientRect();
 
 		if (size.width > tableBounds.right - cellBounds.left) {
@@ -46,17 +45,22 @@ export default Component.extend({
 
 	didInsertElement() {
 		this._super(...arguments);
-
-		this._mdTableContainer = this.$().closest('md-table-container')[0];
-		$(window).on('resize', this.positionDialog.bind(this));
+		this._mdTableContainer = this.element.closest('md-table-container');
+		this._positionDialog = this.positionDialog.bind(this);
+		window.addEventListener('resize', this._positionDialog);
 		run.scheduleOnce('afterRender', this, function() {
-			this.positionDialog();
-			this.$('input').first().focus();
+		  if (!this.isDestroying || !this.isDestroyed) {
+        this.positionDialog();
+        const input = this.element.querySelector('input');
+        if (input) {
+          input.focus();
+        }
+      }
 		});
 	},
 
 	willDestroyElement() {
 		this._super(...arguments);
-		$(window).off('resize', this.positionDialog.bind(this));
+    window.removeEventListener('resize', this._positionDialog);
 	}
 });

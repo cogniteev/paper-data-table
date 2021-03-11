@@ -6,12 +6,14 @@
 	{{/paper-table-select}}
 </div>
 {{/if}}
-<div class="limit-select">
-	<div class="md-table-label">Rows per page:</div>
-	{{#paper-table-select options=limitOptions selected=limit onChange=onChangeLimit as |limit|}}
-		{{limit}}
-	{{/paper-table-select}}
-</div>
+{{#if limitOptions}}
+  <div class="limit-select">
+    <div class="md-table-label">Rows per page:</div>
+    {{#paper-table-select options=limitOptions selected=limit onChange=onChangeLimit as |limit|}}
+      {{limit}}
+    {{/paper-table-select}}
+  </div>
+{{/if}}
 <div class="buttons">
 	{{#if total}}<div class="label">{{startOffset}} - {{endOffset}} of {{total}}</div>{{/if}}
 	{{#paper-button disabled=disableDecrement iconButton=true onClick=onDecrementPage}}
